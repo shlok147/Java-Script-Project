@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Completed!</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 90%;
+        max-width: 400px;
+        animation: fadeIn 1s ease-in-out;
+        position: relative;
+        z-index: 2;
+      }
+      h1 {
+        color: #ff4081;
+        font-size: 2rem;
+      }
+      .message {
+        font-size: 1.2rem;
+        color: #555;
+        margin: 10px 0;
+      }
+      .score-text {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #333;
+        margin: 10px 0;
+      }
+      .play-again {
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        border: none;
+        background: #ff4081;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .play-again:hover {
+        background: #e91e63;
+      }
+
+      /* CSS Confetti */
+      .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        opacity: 0.7;
+        animation: fall linear infinite;
+      }
+      .confetti:nth-child(odd) {
+        background-color: #ff4081;
+      }
+      .confetti:nth-child(even) {
+        background-color: #ffeb3b;
+      }
+      .confetti:nth-child(3n) {
+        background-color: #3f51b5;
+      }
+      .confetti:nth-child(4n) {
+        background-color: #4caf50;
+      }
+      .confetti:nth-child(5n) {
+        background-color: #ff9800;
+      }
+
+      /* Different positions */
+      .confetti:nth-child(1) {
+        left: 10%;
+        animation-duration: 3s;
+      }
+      .confetti:nth-child(2) {
+        left: 20%;
+        animation-duration: 2.5s;
+      }
+      .confetti:nth-child(3) {
+        left: 30%;
+        animation-duration: 3.2s;
+      }
+      .confetti:nth-child(4) {
+        left: 40%;
+        animation-duration: 2.8s;
+      }
+      .confetti:nth-child(5) {
+        left: 50%;
+        animation-duration: 3.1s;
+      }
+      .confetti:nth-child(6) {
+        left: 60%;
+        animation-duration: 2.6s;
+      }
+      .confetti:nth-child(7) {
+        left: 70%;
+        animation-duration: 3s;
+      }
+      .confetti:nth-child(8) {
+        left: 80%;
+        animation-duration: 2.7s;
+      }
+      .confetti:nth-child(9) {
+        left: 90%;
+        animation-duration: 3.3s;
+      }
+      .confetti:nth-child(10) {
+        left: 95%;
+        animation-duration: 3s;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(0) rotate(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🎉 Congratulations! 🎉</h1>
+      <p class="message" id="result-message">
+        You have successfully completed the quiz.
+      </p>
+      <p class="score-text">Your Score: <span id="score">0</span>/25</p>
+      <button class="play-again">Play Again</button>
+    </div>
+
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+
+    <script>
+      $(document).ready(function () {
+        // Get score from
+        let score = sessionStorage.getItem("quizScore");
+        $("#score").text(score);
+
+        // Display a message based on score
+        if (score >= 20) {
+          $("#result-message").text("🌟 Excellent job! You aced it!");
+        } else if (score >= 10) {
+          $("#result-message").text(
+            "👍 Good job! Try to score even higher next time!"
+          );
+        } else {
+          $("#result-message").text(
+            "😔 Keep practicing! You'll do better next time."
+          );
+        }
+
+        // Restart quiz
+        $(".play-again").click(function () {
+          window.location.href = "index.html";
+        });
+      });
+    </script>
+  </body>
+</html>
